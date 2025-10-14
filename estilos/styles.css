@@ -114,7 +114,6 @@ img {
     border-radius: 8px;
 }
 
-/* Footer */
 footer {
     text-align: center;
     background-color: #004d99;
@@ -128,4 +127,48 @@ footer .container {
     box-shadow: none;
     width: 80%;
     padding: 20px;
+}
+
+@media (max-width: 900px) {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .container {
+        width: 92%;
+        margin: 12px auto;
+        padding: 16px;
+    }
+}
+
+
+@media (max-width: 700px) {
+    nav ul {
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 8px 0;
+    }
+}
+
+
+figure iframe {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+    .grid-2 {
+        display: block;
+
+    }
 }
