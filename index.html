@@ -12,8 +12,18 @@
 <body>
   <header aria-label="Encabezado principal">
     <div class="container nav">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> <span>Programa de Asignatura</span></div>
-      <nav aria-label="Navegación principal">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Programa de Asignatura</span>
+      </div>
+
+      <!-- Botón hamburguesa: abre #menu (sin JS) -->
+      <a href="#menu" class="hamburger" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </a>
+
+      <!-- Menú normal en desktop / off-canvas en móvil -->
+      <nav id="menu" aria-label="Navegación principal">
         <ul>
           <li><a href="#programa">Programa educativo</a></li>
           <li><a href="#datos">Asignatura</a></li>
@@ -21,8 +31,12 @@
           <li><a href="#multimedia">Multimedia</a></li>
           <li><a href="#analisis">Análisis semántico</a></li>
         </ul>
+        <!-- Botón cerrar dentro del panel -->
+        <a class="close-panel" href="#" aria-label="Cerrar menú">×</a>
       </nav>
     </div>
+    <!-- Backdrop: al hacer clic cierra el menú (vuelve a #) -->
+    <a href="#" class="backdrop" aria-hidden="true"></a>
   </header>
 
   <div class="container hero">

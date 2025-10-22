@@ -9,9 +9,10 @@ body {
 header {
     background-color: #004d99;
     color: #f2f2f2;
-
     padding: 20px 0;
     text-align: center;
+    position: relative;
+    z-index: 5;
 }
 
 header .container {
@@ -129,22 +130,19 @@ footer .container {
     padding: 20px;
 }
 
+/* Responsivo general */
 @media (max-width: 900px) {
     img {
         width: 100%;
         height: auto;
     }
-}
 
-
-@media (max-width: 900px) {
     .container {
         width: 92%;
         margin: 12px auto;
         padding: 16px;
     }
 }
-
 
 @media (max-width: 700px) {
     nav ul {
@@ -157,7 +155,6 @@ footer .container {
     }
 }
 
-
 figure iframe {
     max-width: 100%;
     width: 100%;
@@ -169,6 +166,132 @@ figure iframe {
 @media (max-width: 900px) {
     .grid-2 {
         display: block;
-
     }
+}
+
+/* ========================================================= */
+/* ========== MENÚ HAMBURGUESA CON :target (sin JS) =========*/
+/* ========================================================= */
+
+/* Botón hamburguesa (solo móvil) */
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    width: 26px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 12;
+    /* por encima del panel */
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: #f2f2f2;
+    border-radius: 2px;
+    margin: 4px 0;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+/* Panel off-canvas en móvil */
+#menu {
+    transition: transform .25s ease;
+}
+
+/* Backdrop que cierra al tocar fuera */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+    z-index: 10;
+}
+
+/* Desktop (≥700px): barra normal */
+@media (min-width: 701px) {
+    .hamburger {
+        display: none;
+    }
+
+    #menu {
+        position: static;
+        transform: none;
+    }
+
+    .backdrop {
+        display: none;
+    }
+}
+
+/* Móvil (≤700px): el menú se vuelve panel lateral */
+@media (max-width: 700px) {
+    .hamburger {
+        display: block;
+    }
+
+    /* El contenedor del nav se convierte en drawer */
+    #menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75%;
+        max-width: 360px;
+        height: 100vh;
+        background: #004d99;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, .25);
+        transform: translateX(100%);
+        /* oculto por defecto */
+        z-index: 11;
+        padding-top: 80px;
+    }
+
+    #menu ul {
+        margin: 0;
+        padding: 0 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    #menu ul li {
+        display: block;
+    }
+
+    #menu ul li a {
+        display: block;
+        color: #f2f2f2;
+        text-decoration: none;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* Botón X dentro del panel */
+    .close-panel {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 28px;
+        color: #f2f2f2;
+        text-decoration: none;
+        line-height: 1;
+    }
+
+    /* ===== Apertura con :target ===== */
+    /* Cuando el hash es #menu, el panel entra y el backdrop aparece */
+    #menu:target {
+        transform: translateX(0);
+    }
+
+    #menu:target~.backdrop {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Animación del ícono a "X" cuando #menu es el objetivo actual */
+    /* Usamos el estado :target + :has() fallback con checkbox no disponible, así que animación simple */
+    /* (Opcional: si quieres transformar rayas a X se puede con JS; aquí lo dejamos estático por CSS puro) */
 }
