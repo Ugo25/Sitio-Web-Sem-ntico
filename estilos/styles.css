@@ -9,7 +9,7 @@ body {
 header {
     background-color: #004d99;
     color: #f2f2f2;
-    padding: 20px 0;
+    padding: 15px 0;
     text-align: center;
     position: relative;
     z-index: 5;
@@ -169,36 +169,31 @@ figure iframe {
     }
 }
 
-/* ========================================================= */
-/* =================== MENÚ HAMBURGUESA =====================*/
-/* ========================================================= */
-
-
+/* ====== MENÚ HAMBURGUESA (compacto) ====== */
 .hamburger {
     display: none;
     position: absolute;
-    top: 22px;
-    right: 22px;
-    width: 26px;
-    height: 20px;
+    top: 34px;
+    right: 28px;
+    width: 34px;
+    height: 26px;
     cursor: pointer;
-    z-index: 12;
+    z-index: 8
 }
 
 .hamburger span {
     display: block;
     height: 3px;
+    margin: 5px 0;
     background: #f2f2f2;
     border-radius: 2px;
-    margin: 4px 0;
-    transition: transform .25s ease, opacity .25s ease;
+    transition: transform .25s, opacity .25s
 }
-
 
 #menu {
-    transition: transform .25s ease;
+    z-index: 11;
+    transition: transform .25s
 }
-
 
 .backdrop {
     position: fixed;
@@ -206,31 +201,29 @@ figure iframe {
     background: rgba(0, 0, 0, .45);
     opacity: 0;
     pointer-events: none;
-    transition: opacity .25s ease;
-    z-index: 10;
+    transition: opacity .25s;
+    z-index: 10
 }
 
-
-@media (min-width: 701px) {
+@media (min-width:701px) {
     .hamburger {
-        display: none;
+        display: none
     }
 
     #menu {
         position: static;
-        transform: none;
+        transform: none
     }
 
     .backdrop {
-        display: none;
+        display: none
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width:700px) {
     .hamburger {
-        display: block;
+        display: block
     }
-
 
     #menu {
         position: fixed;
@@ -239,73 +232,68 @@ figure iframe {
         width: 75%;
         max-width: 360px;
         height: 100vh;
-        background: #004d99;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, .25);
+        background: linear-gradient(180deg, #004d99 0%, #003366 100%);
+        box-shadow: -4px 0 16px rgba(0, 0, 0, .35);
         transform: translateX(100%);
-        z-index: 11;
-        padding-top: 80px;
+        padding: 90px 0 30px
     }
 
     #menu ul {
         margin: 0;
         padding: 0 24px;
         display: flex;
-        flex-direction: column;
-        gap: 28px;
+        flex-direction: column
     }
 
-    #menu ul li {
-        display: block;
+    #menu ul li+li {
+        border-top: 1px solid rgba(255, 255, 255, .1)
     }
 
     #menu ul li a {
         display: block;
-        color: #f2f2f2;
+        color: #fff;
         text-decoration: none;
-        font-weight: bold;
+        text-transform: uppercase;
+        font: 700 1.15rem/1 Arial, Helvetica, sans-serif;
+        letter-spacing: .3px;
         text-align: center;
+        padding: 15px 10px;
+        margin: 5px 20px;
+        border-radius: 8px;
+        transition: background .2s, transform .15s
     }
 
+    #menu ul li a:hover {
+        background: rgba(255, 255, 255, .12);
+        transform: scale(1.03)
+    }
 
     .close-panel {
         position: absolute;
-        top: 18px;
-        right: 18px;
-        font-size: 28px;
-        color: #f2f2f2;
+        top: 25px;
+        right: 25px;
+        font-size: 32px;
+        font-weight: 700;
+        color: #fff;
         text-decoration: none;
-        line-height: 1;
+        transition: transform .2s
     }
 
+    .close-panel:hover {
+        transform: rotate(90deg)
+    }
 
     #menu:target {
-        transform: translateX(0);
+        transform: translateX(0)
     }
 
     #menu:target~.backdrop {
         opacity: 1;
-        pointer-events: auto;
+        pointer-events: auto
     }
-}
 
-
-.hamburger {
-    z-index: 8;
-}
-
-
-#menu {
-    z-index: 11;
-}
-
-.backdrop {
-    z-index: 10;
-}
-
-@media (max-width: 700px) {
     header:has(#menu:target) .hamburger {
         opacity: 0;
-        pointer-events: none;
-
+        pointer-events: none
     }
 }
